@@ -18,7 +18,7 @@ public class ExcelReader {
 	
 	public void getdata (String path) {
 		try {
-			FileInputStream file = new FileInputStream(new File(path));
+			//FileInputStream file = new FileInputStream(new File(path));
 			
 			CsvReader reader = new CsvReader(path);
 			reader.readHeaders();
