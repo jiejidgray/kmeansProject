@@ -35,6 +35,9 @@ public void setSum(double sum) {
 	this.sum = sum;
 }
 
-
+@Override
+public String toString() {
+    return "id:" + id + " date:" + date + "sum:" + sum;
 	
+}
 }
