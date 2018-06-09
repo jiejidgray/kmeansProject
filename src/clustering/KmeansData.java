@@ -2,42 +2,50 @@ package clustering;
 
 public class KmeansData {
 	
- private double id;
- private double date;
- private double sum;
+ private float id;
+ private float date;
+ private float sum;
+ private int nCluster;
  
- public KmeansData(double id, double date, double sum){
+ public KmeansData(float id, float date, float sum,int nCluster){
 	 this.id = id;
 	 this.date = date;
 	 this.sum = sum;
+	 this.nCluster = nCluster;
  }
- public double getId() {
+ public float getId() {
 	return id;
 }
 
-public void setId(double id) {
+public void setId(float id) {
 	this.id = id;
 }
 
-public double getDate() {
+public float getDate() {
 	return date;
 }
 
-public void setDate(double date) {
+public void setDate(float date) {
 	this.date = date;
 }
 
-public double getSum() {
+public float getSum() {
 	return sum;
 }
 
-public void setSum(double sum) {
+public void setSum(float sum) {
 	this.sum = sum;
 }
 
 @Override
 public String toString() {
-    return "id:" + id + " date:" + date + "sum:" + sum;
+    return  id + "" + date + "" + sum +"";
 	
+}
+public float getnCluster() {
+	return nCluster;
+}
+public void setnCluster(int nCluster) {
+	this.nCluster = nCluster;
 }
 }

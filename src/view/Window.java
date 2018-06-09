@@ -1,8 +1,10 @@
 package view;
 
+import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -10,12 +12,13 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import clustering.ExcelReader;
+import clustering.KmeansData;
 
 public class Window {
 public JFrame frame;
 private  String text ="";
-
-
+private TextArea textarea;
+public ArrayList<KmeansData> dataset = new ArrayList<KmeansData>();
 public Window () {
 	initialize();
 }
@@ -37,6 +40,7 @@ private void initialize() {
 			System.out.println(path);
 			try {
 				 operateFile(path);
+				textarea = new TextArea();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -47,7 +51,7 @@ private void initialize() {
 			JFileChooser chooser = new JFileChooser();
 			chooser.setCurrentDirectory(new File("."));
 			
-			int retour = chooser.showOpenDialog(null);
+		int retour = chooser.showOpenDialog(null);
 			return chooser.getSelectedFile().getAbsolutePath();
 		}
 	});
@@ -60,8 +64,10 @@ private void initialize() {
 			System.out.println(text);
 		}else{
 			ExcelReader data = new ExcelReader();
-			data.getdata(path);
-			System.out.println("done");
+			
+			dataset = data.getdata(path);	
 		}
 	}
+	
+	 
 }
