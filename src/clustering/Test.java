@@ -8,9 +8,12 @@ import java.util.List;
 import java.util.Scanner;
 
 import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
 
 import com.csvreader.CsvWriter;
 
+import view.Chart;
 import view.Window;
 
 public class Test {
@@ -45,8 +48,18 @@ public class Test {
 	        	}
 	            //k.printDataArray(cluster.get(i), "cluster["+i+"]");    
 	        }  
+	        //System.out.println(dataList);
 	        String filePath="/Users/jijie/eclipse-workspace/Kmeans/test.csv";
 	        exportCsv(dataList, filePath); 
+	        
+	        SwingUtilities.invokeLater(() -> {
+	            Chart example = new Chart("Visualisation","date", "TotalCount",dataList, num);
+	            example.setSize(800, 400);
+	            example.setLocationRelativeTo(null);
+	            example.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+	            example.setVisible(true);
+	          });
+	        
 	}
 	 
     /** 
