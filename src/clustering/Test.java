@@ -54,7 +54,7 @@ public class Test {
 	        
 	        SwingUtilities.invokeLater(() -> {
 	            Chart example = new Chart("Visualisation","date", "TotalCount",dataList, num);
-	            example.setSize(800, 400);
+	            example.setSize(800, 700);
 	            example.setLocationRelativeTo(null);
 	            example.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	            example.setVisible(true);
