@@ -34,12 +34,28 @@ public class Test {
 	        k.kmeans();  
 	        
 	        ArrayList<ArrayList<KmeansData>> cluster=k.getCluster();    
-	        
+	        ArrayList<ArrayList<Float>> myhopelist =k.getHopelist();
 	        //r¨¦sultat
 	        List<String[]> dataList = new ArrayList<String[]>();
 	        List<String[]> tabnDataList[] = new ArrayList[num];
 	        dataList.add(new String[] {"id","date","TotalCount","nCluster"});
 	        for(int i=0;i<cluster.size();i++)    
+	         {    
+	          //dataList.add(new String[] {"cluster",String.valueOf(i)});
+	          int number_cluster=0;
+	          for(int t=0;t<num;t++){
+	           if(myhopelist.get(t).get(1)==(float)i){
+	            number_cluster=t;
+	           }
+	          }
+	          tabnDataList[number_cluster] = k.printDataArray(cluster.get(i), number_cluster);
+	          for(int j=0;j<tabnDataList[number_cluster].size();j++){
+	           dataList.add(tabnDataList[number_cluster].get(j));
+	          }
+	             //k.printDataArray(cluster.get(i), "cluster["+i+"]");    
+	          System.out.println("i:"+i+"   numbercluster:"+number_cluster);
+	         }
+	       /* for(int i=0;i<cluster.size();i++)    
 	        {    
 	        	//dataList.add(new String[] {"cluster",String.valueOf(i)});
 	        	tabnDataList[i] = k.printDataArray(cluster.get(i), i);
@@ -47,9 +63,9 @@ public class Test {
 	        		dataList.add(tabnDataList[i].get(j));
 	        	}
 	            //k.printDataArray(cluster.get(i), "cluster["+i+"]");    
-	        }  
-	        //System.out.println(dataList);
-	        String filePath="/Users/jijie/eclipse-workspace/Kmeans/test.csv";
+	        }  */
+	       // System.out.println(dataList);
+	        String filePath="/Users/jijie/eclipse-workspace/Kmeans/tweet.csv";
 	        exportCsv(dataList, filePath); 
 	        
 	        SwingUtilities.invokeLater(() -> {
@@ -59,7 +75,7 @@ public class Test {
 	            example.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	            example.setVisible(true);
 	          });
-	        
+	       // System.out.println(k.getM());
 	}
 	 
     /** 
