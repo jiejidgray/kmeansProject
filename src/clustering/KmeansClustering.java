@@ -190,10 +190,8 @@ public class KmeansClustering {
 	    }    
 	      
 	    public List<String[]> printDataArray(ArrayList<KmeansData> dataArray, int nCluster) {
-	    	/*for(int j=0;j<center.size();j++) {
-	    		System.out.print(center.get(j));
-	    	}*/
-	    	System.out.println(center.size());
+	    
+	    	
 	    	List<String[]> ExportList = new ArrayList<String[]>();
 	        //afficher le r¨¦sultat 
 	        for (int i = 0; i < dataArray.size(); i++) {    

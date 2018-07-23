@@ -64,44 +64,7 @@ public class Chart extends JFrame{
 	        r.setBaseShapesVisible(true);
 	        r.setSeriesShape(0, ShapeUtilities.createTranslatedShape(
 	            new Rectangle(12, 12), -6, -6));
-	      /*  r.setBaseToolTipGenerator(new XYToolTipGenerator() {
-	        	 @Override
-	        	    protected String generateLabelString( List<String[]> dataset, int row, int col) {
-	        	        return dataset.getColumnKey(col) + " " + dataset.getValue(row, col);
-	        	    }
-	        });
-	        System.out.println(generator1);
-	        CustomXYToolTipGenerator generator2 = new CustomXYToolTipGenerator();
-	        generator2.addToolTipSeries(ToolTips2);
-	        
-	        plot.setRenderer(r);
-	      /*  Vector<String> ToolTips1 = new Vector<String>();
-	        for (int j = 0; j < 10; j++)
-	        {
-	          ToolTips1.add("First: "+j);
-	        }
-
-	        Vector<String> ToolTips2 = new Vector<String>();
-	        for (int j = 0; j < 10; j++)
-	        {
-	          ToolTips2.add("12344");
-	        } 
-	        
-	        
-
-	        r.setSeriesToolTipGenerator(0, generator1);
-	        r.setSeriesToolTipGenerator(1, generator2);
-
-	        r.setBaseShape(new Ellipse2D.Double(-3.0, -3.0, 8.0, 8.0));
-	        CustomXYToolTipGenerator cttGen = new CustomXYToolTipGenerator();
-
-	        ArrayList tips = new ArrayList();
-	        tips.add("#1: fine, ok");
-	        tips.add("#2: 5.0, 694.1");
-	        tips.add("#3: 4.0, 100.0");
-	       
-	        cttGen.addToolTipSeries(tips);
-	        renderer.setToolTipGenerator(cttGen);*/
+	      
 
 	      
 	        this.chartPanel = new ChartPanel(chart) {
@@ -111,18 +74,8 @@ public class Chart extends JFrame{
 	                return new Dimension(640, 480);
 	            }
 	        };
-	        // zomm in zoom out
-	      /*  chartPanel.addMouseWheelListener(new MouseWheelListener() {
-	            public void mouseWheelMoved(MouseWheelEvent e) {
-	             if (-3 == e.getUnitsToScroll()) {
-	            	 chartPanel.zoomInBoth(10, 10);
-	              System.out.println("向上");
-	             } else if (3 == e.getUnitsToScroll()) {
-	            	 chartPanel.zoomOutBoth(10, 10);
-	              System.out.println("向下");
-	             }
-	            }
-	           });*/
+	        
+	 //MouseListner
 	        setInfo(dataResult);
 	        setContentPane(chartPanel);
 	}

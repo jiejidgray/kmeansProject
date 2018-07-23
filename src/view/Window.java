@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
 
+import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -25,8 +26,14 @@ private String text ="";
 private boolean importFile;
 private TextArea textarea;
 private JTextField in = new JTextField(5);  
-private JButton btn = new JButton("enter"); 
+private JButton btn = new JButton("Clustering"); 
+private JButton button = new JButton("Enter"); 
 private JLabel out = new JLabel("Résultat"); 
+private String input;
+private int clusterNum;
+private boolean ok = false;
+private  Boolean continueThread = false;
+
 
 public ArrayList<KmeansData> dataset = new ArrayList<KmeansData>();
 public Window () {
@@ -36,13 +43,12 @@ public Window () {
 
 private void initialize() {
 	frame = new JFrame();
-	frame.setBounds(100, 100, 450, 536);
+	frame.setBounds(200, 200, 300, 500);
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	
 	JMenuBar menuBar = new JMenuBar();
 	frame.setJMenuBar(menuBar);
-	
-     
+	frame.setLayout(new FlowLayout());
 
 	JMenuItem menuOpen = new JMenuItem("Import Data");
 	
@@ -51,16 +57,14 @@ private void initialize() {
 		
 		public void actionPerformed(ActionEvent arg) {
 			String path = getFile();
-			System.out.println(path);
+			
 			try {
 				 operateFile(path);
 				// JOptionPane.showMessageDialog(text,"Printing complete");
 				 importFile = true;
-				 
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			
 		}
 		
 		public String getFile() {
@@ -73,10 +77,42 @@ private void initialize() {
 	});
 	menuBar.add(menuOpen);
 	
+	frame.add(in);
+	
+	frame.add(button);
+
+	frame.add(btn);
+
 	
 }
 
-//operat data file
+
+
+	public boolean isImportFile() {
+	return importFile;
+}
+
+public void setImportFile(boolean importFile) {
+	this.importFile = importFile;
+}
+
+	public JTextField getIn() {
+	return in;
+}
+
+public void setIn(JTextField in) {
+	this.in = in;
+}
+
+public JButton getButton() {
+	return button;
+}
+
+public void setButton(JButton button) {
+	this.button = button;
+}
+
+	//operat data file
 	private void operateFile(String path) throws InterruptedException {
 		if (path.isEmpty()) {
 			text += "Fichier pas bon";
@@ -84,25 +120,60 @@ private void initialize() {
 		}else{
 			ExcelReader data = new ExcelReader();
 			
-			dataset = data.getdata(path);	
+			dataset = data.getdata(path);
+			this.importFile=true;
+		/*	String str = JOptionPane.showInputDialog("Entrer:");
+			int d = Integer.parseInt(str);
+			clusterNum = d;
+			continueThread = !continueThread;*/
 		}
 	}
 	
-	/*private void enterCluster() {
+	public  Boolean getContinueThread() {
+		return continueThread;
+	}
+
+	public void setContinueThread(Boolean continueThread) {
+		this.continueThread = continueThread;
+	}
+
+/*	private void enterCluster() {
 		
 	        btn.addActionListener(new BtnActionAdapter());  //new一个事件监听对象，实现监听功能
-	        setSize(400, 100);
-	        setDefaultCloseOperation(DISPOSE_ON_CLOSE);  //退出
-	        setVisible(true);  //显示界面
+	      
+	  
 	    }
-	    class BtnActionAdapter implements ActionListener {      //添加一个事件监听对象，实现监听功能
+	    public class BtnActionAdapter implements ActionListener {      //添加一个事件监听对象，实现监听功能
 	        public void actionPerformed(ActionEvent e) {    //动作事件
 	            String s = in.getText();    //文本框得到文本
-	            double d = Double.parseDouble(s);       //解析成实数
-	            double sq = d * d;
-	            out.setText( d + "的平方是" + sq);      //显示结果
+	            clusterNum = Integer.parseInt(s);       //解析成实数
+	             
+	           out.setText("Nombre de K: "+ clusterNum );      //显示结果
 	        }
-	    }
-	}*/
-	 
+	    }*/
+		public int getClusterNum() {
+			return clusterNum;
+		}
+
+		public void setClusterNum(int clusterNum) {
+			this.clusterNum = clusterNum;
+		}
+
+		public boolean isOk() {
+			return ok;
+		}
+
+		public void setOk(boolean ok) {
+			this.ok = ok;
+		}
+
+		public JButton getBtn() {
+			return btn;
+		}
+
+		public void setBtn(JButton btn) {
+			this.btn = btn;
+		}
+
+	
 }
